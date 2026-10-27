@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<script>
+/* Team preview password screen. Keeps casual visitors out; not real security. */
+(function () {
+  var H = '6d22b8a2d2f6d1a4a70df5975665aa970eab7a9c9c53b0d7baa8ff258ae97439', K = 'tryll-preview', d = document.documentElement;
+  try { if (localStorage.getItem(K) === H) return; } catch (e) {}
+  d.style.visibility = 'hidden';
+  function show() {
+    var o = document.createElement('div');
+    o.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;' +
+      'background:#161D29;visibility:visible;font-family:"Space Grotesk",system-ui,sans-serif';
+    o.innerHTML = '<form style="background:#fff;border-radius:16px;padding:32px;width:min(360px,88vw);display:flex;flex-direction:column;gap:14px">' +
+      '<b style="font-size:24px;font-weight:500;color:#181716">Tryll site preview</b>' +
+      '<span style="color:rgba(24,23,22,.72);font-size:16px">Enter the team password to continue.</span>' +
+      '<input type="password" aria-label="Password" style="height:48px;border-radius:8px;border:1px solid rgba(24,23,22,.2);padding:0 14px;font:inherit;font-size:16px">' +
+      '<button style="height:48px;border:0;border-radius:8px;background:#232E41;color:#fff;font:inherit;font-size:16px;cursor:pointer">Open preview</button>' +
+      '<small style="color:#B42318;min-height:1.2em;font-size:14px"></small></form>';
+    document.body.appendChild(o);
+    var f = o.firstChild, i = f.querySelector('input');
+    i.focus();
+    f.onsubmit = function (e) {
+      e.preventDefault();
+      crypto.subtle.digest('SHA-256', new TextEncoder().encode(i.value)).then(function (b) {
+        var h = Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, '0'); }).join('');
+        if (h !== H) { f.querySelector('small').textContent = 'Wrong password'; i.select(); return; }
+        try { localStorage.setItem(K, H); } catch (e2) {}
+        o.remove();
+        d.style.visibility = '';
+      });
+    };
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show); else show();
+})();
+</script>
+    <!-- Cookie consent + Google Consent Mode v2 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Tryll Engine</title>
+    <meta name="description" content="Privacy Policy for Tryll Engine, Inc. - how we collect, use, and protect personal data of visitors to tryllengine.com.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Privacy Policy - Tryll Engine">
+    <meta property="og:description" content="How Tryll Engine, Inc. processes personal data of visitors to tryllengine.com.">
+    <meta property="og:url" content="https://tryllengine.com/privacy-policy.html">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: Inter + JetBrains Mono (matches index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/site-preview/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/site-preview/assets/favicon/favicon.svg">
+
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .prose-tryll h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+        .prose-tryll h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+        .prose-tryll p {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .prose-tryll ul {
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 1.25rem;
+            padding-left: 1.25rem;
+            list-style-type: disc;
+        }
+        .prose-tryll ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        .prose-tryll a {
+            color: #60a5fa;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.15s ease;
+        }
+        .prose-tryll a:hover { color: #ffffff; }
+        .prose-tryll strong { color: #ffffff; font-weight: 600; }
+        .prose-tryll hr {
+            border-color: rgba(255, 255, 255, 0.1);
+            margin: 2.5rem 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#0a0a0a] text-white">
+
+    <!-- Header / Nav -->
+    <header class="border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+            <a href="/site-preview/" class="flex items-center gap-2">
+                <img src="/site-preview/assets/logo/full-logo/light-text.svg" alt="Tryll Engine" class="h-7">
+            </a>
+            <nav class="flex items-center gap-6 text-sm text-white/70">
+                <a href="/site-preview/#features" class="hover:text-white transition">Features</a>
+                <a href="/site-preview/#pricing" class="hover:text-white transition">Pricing</a>
+                <a href="/site-preview/blog.html" class="hover:text-white transition">Blog</a>
+                <a href="/site-preview/#contact" class="hover:text-white transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="max-w-3xl mx-auto px-6 py-16 prose-tryll">
+
+        <p class="font-mono text-xs text-white/40 uppercase tracking-widest mb-4">// privacy_policy</p>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">Privacy Policy</h1>
+        <p class="text-white/70 text-lg mb-1"><strong>Tryll Engine, Inc.</strong></p>
+        <p class="text-sm text-white/50">Last updated: May 27, 2026</p>
+        <p class="text-sm text-white/50 mb-10">Effective date: May 27, 2026</p>
+
+        <hr>
+
+        <h2>1. Introduction</h2>
+        <p>This Privacy Policy describes how Tryll Engine, Inc. ("Tryll Engine," "we," "us," or "our"), a Delaware corporation with registered offices at 1201 N. Orange Street, Suite 7587, Wilmington, DE 19801-1186, USA, processes personal data of visitors to <a href="https://tryllengine.com">https://tryllengine.com</a> (the "Website").</p>
+        <p>We act as a data controller (and, where applicable, a processor) within the meaning of the EU General Data Protection Regulation 2016/679 ("GDPR") and equivalent laws.</p>
+        <p>We respect your privacy and aim to handle personal data in line with applicable law and reasonable expectations.</p>
+
+        <h2>2. Personal data we collect</h2>
+        <p>We process the following categories of personal data, only to the extent you provide them or they are generated when you use the Website:</p>
+        <ul>
+            <li><strong>Contact information</strong>: email address, first and/or last name.</li>
+            <li><strong>Professional information</strong>: company or studio name, and role or category (such as studio, solo developer, modder, or other), where relevant to the form you submit.</li>
+            <li><strong>Subscription metadata</strong>: the source page or form through which you subscribed, your communication preferences, and timestamps for subscribe, confirm, and unsubscribe actions.</li>
+            <li><strong>Inquiry content</strong>: any information you choose to include when contacting us through a form or by email.</li>
+            <li><strong>Server log and analytics data</strong>: when you visit the Website, our hosting and analytics providers automatically receive standard technical information, including your IP address, online identifiers (such as cookie IDs), date and time of access, pages viewed, the referring URL, and your browser and operating system.</li>
+        </ul>
+        <p>We do not deliberately collect special categories of personal data (such as health, biometric, or political data), and we ask that you do not submit them through our forms.</p>
+        <p>The Website is not directed to children under the age of 16, and we do not knowingly collect personal data from children. If you believe a child has provided us with personal data, please contact us at <a href="mailto:privacy@tryllengine.com">privacy@tryllengine.com</a> and we will take steps to delete it.</p>
+
+        <h2>3. How we use your information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+            <li>respond to your inquiries, demo requests, and partnership outreach;</li>
+            <li>send you the newsletter or product updates you have subscribed to;</li>
+            <li>operate, secure, and improve the Website;</li>
+            <li>understand how visitors use the Website, in aggregate;</li>
+            <li>comply with legal obligations.</li>
+        </ul>
+        <p>We do not engage in automated decision-making that produces legal or similarly significant effects concerning you, within the meaning of Article 22 GDPR.</p>
+
+        <h2>4. Cookies and analytics</h2>
+        <p>The Website uses cookies and similar technologies. Cookies are small text files placed on your device by your browser.</p>
+        <p>We use:</p>
+        <ul>
+            <li><strong>Strictly necessary cookies</strong> to operate the Website.</li>
+            <li><strong>Analytics cookies</strong> set by Google Analytics and Google Tag Manager, which help us understand how the Website is used in aggregate.</li>
+        </ul>
+        <p>We require your prior consent to deploy non-essential cookies (including analytics cookies) on your device. When you first visit our Website, you can accept, reject, or customize your preferences through our interactive Cookie Consent Banner. You can subsequently manage, modify, or withdraw your consent at any time by clicking the "Cookie Settings" link in the Website.</p>
+        <p>Additionally, you can configure your browser to reject cookies or to alert you before a cookie is set. Some Website features may not function correctly if you reject all cookies. To opt out of Google Analytics specifically, you can install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a>.</p>
+        <p>We do not use cookies for cross-site advertising, and we do not share personal data with third parties for their own advertising purposes.</p>
+
+        <h2>5. Legal bases for processing</h2>
+        <p>To the extent the GDPR applies, we rely on the following legal bases for processing personal data:</p>
+        <ul>
+            <li><strong>Consent</strong>, when you subscribe to our newsletter or otherwise opt in to a specific use of your data, including, where required, the use of non-essential cookies.</li>
+            <li><strong>Legitimate interests</strong>, in operating, securing, and improving the Website, and in communicating or following up with prospective customers, partners, and investors who have contacted us. You have the right to object to processing based on legitimate interests (see Section 9).</li>
+            <li><strong>Contractual necessity</strong>, where we process data to perform an agreement with you.</li>
+            <li><strong>Legal obligation</strong>, where processing is necessary for compliance with applicable laws and regulatory requirements.</li>
+        </ul>
+        <p>You may withdraw consent at any time by emailing <a href="mailto:privacy@tryllengine.com">privacy@tryllengine.com</a> or by using the unsubscribe link in our emails. Withdrawal of consent shall not affect the lawfulness of processing based on consent before its withdrawal.</p>
+
+        <h2>6. Newsletter and marketing communications</h2>
+
+        <h3>6.1. Scope</h3>
+        <p>This section applies when you subscribe to our newsletter, opt in to product or company updates, or otherwise ask to receive ongoing communications from us.</p>
+
+        <h3>6.2. Information collected through subscription</h3>
+        <p>Depending on the form, we collect: email address, name, company or studio name, the form or page that originated the subscription, communication preferences, and timestamps for subscribe, confirm, and unsubscribe events.</p>
+
+        <h3>6.3. Double opt-in</h3>
+        <p>We use double opt-in for newsletter subscriptions. After you submit a signup form, we send a confirmation email and only begin sending updates after you confirm. If you do not confirm, we retain limited information necessary to manage the signup attempt and prevent duplicate processing, but we will not treat you as a subscribed recipient.</p>
+
+        <h3>6.4. Contact and demo forms</h3>
+        <p>If you contact us through a contact, demo, partnership, or waitlist form, we use your information to respond to your inquiry and to manage the resulting business conversation. We may follow up by email about the subject of your inquiry under our legitimate interest in operating our business. We will not add you to our ongoing marketing newsletter without your explicit consent through a separate subscription action.</p>
+
+        <h3>6.5. Your choices</h3>
+        <p>You can unsubscribe at any time using the unsubscribe link in our emails or by emailing <a href="mailto:privacy@tryllengine.com">privacy@tryllengine.com</a>. After you unsubscribe, we may retain your email address in a suppression list to make sure we do not contact you again. Unsubscribing from the newsletter does not automatically delete contact records we keep for legitimate business purposes (such as responding to a prior inquiry); to request deletion, see Section 9.</p>
+
+        <h2>7. Sharing with service providers</h2>
+        <p>We share personal data with third-party service providers that help us run the Website, communicate with you, and analyze usage. These providers act as data processors and are bound by written agreements to use the data only on our instructions and as necessary to provide their services.</p>
+        <p>Current providers include:</p>
+        <ul>
+            <li><strong>GitHub Pages</strong> (website hosting) - Microsoft Corporation, USA.</li>
+            <li><strong>Formspree</strong> (contact form processing) - Formspree, Inc., USA.</li>
+            <li><strong>MailerLite</strong> (newsletter and marketing automation) - UAB MailerLite, Lithuania (EU).</li>
+            <li><strong>Google Analytics and Google Tag Manager</strong> (website analytics) - Google LLC, USA, and Google Ireland Limited.</li>
+        </ul>
+        <p>We do not sell, rent, or share personal data with third parties for advertising purposes.</p>
+        <p>We may also disclose personal data when required by law, court order, or to protect our legal rights, or in connection with a corporate transaction (such as a merger, acquisition, or financing) subject to appropriate confidentiality and data protection commitments.</p>
+
+        <h2>8. International data transfers</h2>
+        <p>We are based in the United States, and some of our service providers operate in the United States or other countries outside the European Economic Area ("EEA"). When we transfer personal data outside the EEA, we rely on appropriate safeguards required under GDPR, including:</p>
+        <ul>
+            <li>the European Commission's adequacy decisions, where applicable;</li>
+            <li>Standard Contractual Clauses (SCCs) approved by the European Commission;</li>
+            <li>our service providers' data processing agreements that incorporate such safeguards.</li>
+        </ul>
+        <p>You can request a copy of the relevant safeguards by contacting <a href="mailto:privacy@tryllengine.com">privacy@tryllengine.com</a>.</p>
+
+        <h2>9. Your rights</h2>
+        <p>Subject to applicable law, you have the following rights regarding your personal data:</p>
+        <ul>
+            <li><strong>Access</strong>: request information about the data we hold about you.</li>
+            <li><strong>Correction</strong>: request that we correct inaccurate or incomplete data.</li>
+            <li><strong>Deletion</strong> (the "right to be forgotten"): request that we delete data we hold about you, subject to certain exceptions provided by law.</li>
+            <li><strong>Restriction</strong>: request that we limit how we use your data.</li>
+            <li><strong>Objection</strong>: object to processing based on our legitimate interests, including direct marketing.</li>
+            <li><strong>Portability</strong>: request a copy of your data in a structured, commonly used, machine-readable format.</li>
+            <li><strong>Withdrawal of consent</strong>: where we rely on consent, withdraw it at any time without affecting the lawfulness of prior processing.</li>
+            <li><strong>Complaint</strong>: lodge a complaint with a data protection supervisory authority in your jurisdiction.</li>
+        </ul>
+        <p>To exercise any of these rights, email <a href="mailto:privacy@tryllengine.com">privacy@tryllengine.com</a>. We will respond within the time frames required by applicable law.</p>
+
+        <h2>10. Data retention</h2>
+        <p>We retain personal data for as long as necessary to fulfill the purposes described in this Policy, to comply with legal obligations, to resolve disputes, and to enforce our agreements. Specifically:</p>
+        <ul>
+            <li><strong>Newsletter subscribers</strong>: retained until you unsubscribe or request deletion. After unsubscribe, your email address may be kept in a suppression list for up to 3 years to prevent re-subscription by mistake.</li>
+            <li><strong>Inquiry and contact form records</strong>: typically retained for up to 3 years after the last contact, unless a longer period is required by law or by an ongoing business relationship.</li>
+            <li><strong>Server logs</strong>: typically retained for up to 12 months.</li>
+            <li><strong>Analytics data</strong>: retained according to the configured retention period in Google Analytics, typically up to 14 months.</li>
+        </ul>
+
+        <h2>11. Security</h2>
+        <p>We implement reasonable administrative, technical, and physical safeguards designed to protect personal data against loss, misuse, unauthorized access, disclosure, alteration, and destruction. No method of transmission over the Internet is fully secure, however, and we cannot guarantee absolute security. In the event of a personal data breach affecting your rights and freedoms, we will notify you and the competent supervisory authority as required by applicable law.</p>
+
+        <h2>12. Changes to this Policy</h2>
+        <p>We may update this Policy from time to time. The "Last updated" date at the top reflects the most recent revision. Material changes will be communicated through the Website or, where appropriate, by email.</p>
+
+        <h2>13. Contact</h2>
+        <p>For questions or requests related to this Policy: <a href="mailto:privacy@tryllengine.com">privacy@tryllengine.com</a>.</p>
+        <p>For general inquiries: <a href="mailto:team@tryllengine.com">team@tryllengine.com</a>.</p>
+        <p><strong>Mailing address:</strong> Tryll Engine, Inc., 1201 N. Orange Street, Suite 7587, Wilmington, DE 19801-1186, USA.</p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 mt-16">
+        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
+            <p>&copy; 2026 Tryll Engine, Inc. All rights reserved.</p>
+            <a href="/site-preview/privacy-policy.html" class="hover:text-white transition">Privacy Policy</a>
+        </div>
+    </footer>
+
+</body>
+</html>
